@@ -1,0 +1,580 @@
+<%- include('partials/header.ejs') %>
+
+    <div class="header bg-gradient-primary pb-7 pt-4 pt-md-7">
+      <div class="container-fluid">
+        <div class="header-body">
+          
+        </div>
+      </div>
+    </div> <!-- header bg-gradient-primary -->
+
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+            <div class="col">
+                <div class="card shadow">
+
+                    <div class="card-header bg-transparent">
+                        <h3 class="mb-0">Cadastro da Operação</h3>
+                    </div>
+
+                    <div class="card-body">
+
+                      <form action="/lancamento/send" method="POST" role="form">
+                        <h6 class="heading-small text-muted mb-4">Informações do Cliente</h6>
+                        <div class="pl-lg-4">
+                          <div class="row">
+
+                            <div class="col-lg-4">
+                              <label class="form-control-label" for="input-username">CPF</label>
+                              <div class="input-group">
+                                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" onkeypress="$(this).mask('000.000.000-00');" required>
+                                  <div class="input-group-append"> 
+                                    <button class="btn btn-outline-primary" type="button" id="btnPesquisarCPF">Pesquisar</button>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-8">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Nome</label>
+                                <input type="text" id="nome" name="nome" class="form-control form-control-alternative" required <% if(typeof nome != 'undefined') { %> value="<%= nome %>" <% } %> >
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-email">Data de Nascimento</label>
+                                <input type="date" id="nascimento" name="nascimento" class="form-control form-control-alternative" required>
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Sexo</label>
+                                <select id="sexo" name="sexo" class="form-control form-control-alternative" required>
+                                <option>Selecione...</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control form-control-alternative" required <% if(typeof email != 'undefined') { %> value="<%= email %>" <% } %> >
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-last-name">Celular</label>
+                                <input type="text" id="celular" name="celular" class="form-control form-control-alternative" placeholder="(XX) 9XXXX - XXXX" onkeypress="$(this).mask('(00) 90000-0000')" required <% if(typeof celular != 'undefined') { %> value="<%= celular %>" <% } %> >
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Onde nos Conheceu?</label>
+                                <select id="ondeConheceu" name="ondeConheceu" class="form-control form-control-alternative" required>
+                                <option>Selecione...</option>
+                                <option <% if(typeof ondeConheceu != 'undefined' && ondeConheceu == 'Cliente Recorrente') { %> selected <% } %> value="Cliente Recorrente">Cliente Recorrente</option>
+                                <option <% if(typeof ondeConheceu != 'undefined' && ondeConheceu == 'Detran') { %> selected <% } %> value="Detran">Detran</option>
+                                <option <% if(typeof ondeConheceu != 'undefined' && ondeConheceu == 'Google') { %> selected <% } %> value="Google">Google</option>
+                                <option <% if(typeof ondeConheceu != 'undefined' && ondeConheceu == 'Ônibus') { %> selected <% } %> value="Ônibus">Ônibus</option>
+                                <option <% if(typeof ondeConheceu != 'undefined' && ondeConheceu == 'Outdoor') { %> selected <% } %> value="Outdoor">Outdoor</option>
+                                <option <% if(typeof ondeConheceu != 'undefined' && ondeConheceu == 'Panfleto') { %> selected <% } %> value="Panfleto">Panfleto</option>
+                                <option <% if(typeof ondeConheceu != 'undefined' && ondeConheceu == 'Rede Social') { %> selected <% } %> value="Rede Social">Rede Social</option>
+                                <option <% if(typeof ondeConheceu != 'undefined' && ondeConheceu == 'Outros') { %> selected <% } %> value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <!-- Lançamentos -->
+                        <hr class="my-4" />
+                        <h6 class="heading-small text-muted mb-4">Lançamentos</h6>
+                        <div class="pl-lg-4">
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 01</label>
+                                <input id="codigoBarras01" name="codigoBarras01" class="form-control form-control-alternative" type="text" required>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor01" name="valor01" class="form-control form-control-alternative" value="0" required  onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo01" name="tipo01" class="form-control form-control-alternative" required>
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 02</label>
+                                <input id="codigoBarras02" name="codigoBarras02" class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor02" name="valor02" class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo02" name="tipo02" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 03</label>
+                                <input id="codigoBarras03" name="codigoBarras03" class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor03" name="valor03" class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo03" name="tipo03" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 04</label>
+                                <input id="codigoBarras04" name="codigoBarras04"  class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor04" name="valor04"  class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo04" name="tipo04" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 05</label>
+                                <input id="codigoBarras05" name="codigoBarras05"  class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor05" name="valor05"  class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo05" name="tipo05" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 06</label>
+                                <input id="codigoBarras06" name="codigoBarras06"  class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor06" name="valor06"  class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo06" name="tipo06" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 07</label>
+                                <input id="codigoBarras07" name="codigoBarras07"  class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor07" name="valor07"  class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo07" name="tipo07" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 08</label>
+                                <input id="codigoBarras08" name="codigoBarras08"  class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor08" name="valor08"  class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo08" name="tipo08" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 09</label>
+                                <input id="codigoBarras09" name="codigoBarras09"  class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor09" name="valor09"  class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo09" name="tipo09" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-address">Código de Barras 10</label>
+                                <input id="codigoBarras10" name="codigoBarras10"  class="form-control form-control-alternative" type="text">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor</label>
+                                <input type="currency" id="valor10" name="valor10"  class="form-control form-control-alternative" value="0" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Tipo do Boleto</label>
+                                <select id="tipo10" name="tipo10" class="form-control form-control-alternative">
+                                <option>Selecione...</option>
+                                <option value="Celpe">Celpe</option>
+                                <option value="Compesa">Compesa</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Telefonia">Telefonia</option>
+                                <option value="IPTU">IPTU</option>
+                                <option value="Faculdade">Faculdade</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        
+                        <hr class="my-4" />
+                        <!-- Serviço -->
+                        <h6 class="heading-small text-muted mb-4">Serviço</h6>
+                        <div class="pl-lg-4">
+                          <div class="row">
+                            <span class="heading-small text-muted mb-4">Cartão 01</span>
+                            
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Bandeira</label>
+                                <select id="bandeira01" name="bandeira01" class="form-control form-control-alternative" required>
+                                <option>Selecione...</option>
+                                <option value="Amex">Amex</option>
+                                <option value="Elo">Elo</option>
+                                <option value="Hiper">Hiper</option>
+                                <option value="Mastercard">Masterard</option>
+                                <option value="Visa">Visa</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Parcelas</label>
+                                <select id="parcelas01" name="parcelas01" class="form-control form-control-alternative" required>
+                                <option>Selecione...</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == 'Débito') { %> selected <% } %> value="Débito">Débito</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '1') { %> selected <% } %> value="1">1</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '2') { %> selected <% } %> value="2">2</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '3') { %> selected <% } %> value="3">3</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '4') { %> selected <% } %> value="4">4</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '5') { %> selected <% } %> value="5">5</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '6') { %> selected <% } %> value="6">6</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '7') { %> selected <% } %> value="7">7</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '8') { %> selected <% } %> value="8">8</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '9') { %> selected <% } %> value="9">9</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '10') { %> selected <% } %> value="10">10</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '11') { %> selected <% } %> value="11">11</option>
+                                <option <% if(typeof qtdParcelas != 'undefined' && qtdParcelas == '12') { %> selected <% } %> value="12">12</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Valor das Parcelas</label>
+                                <input type="text" id="valorParcelas01" name="valorParcelas01" class="form-control form-control-alternative" value="0" readonly onkeypress="$(this).mask('R$ 999.990,00')">
+                              </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor Total</label>
+                                <input type="text" id="valorTotal01" name="valorTotal01" class="form-control form-control-alternative" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Código Autorização</label>
+                                <input type="number" id="codigoAutorizacao01" name="codigoAutorizacao01" class="form-control form-control-alternative" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <span class="heading-small text-muted mb-4">Cartão 02</span>
+                          </div>
+                          <div class="row">
+                          <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Bandeira</label>
+                                <select id="bandeira02" name="bandeira02" class="form-control form-control-alternative" required>
+                                <option>Selecione...</option>
+                                <option value="Amex">Amex</option>
+                                <option value="Elo">Elo</option>
+                                <option value="Hiper">Hiper</option>
+                                <option value="Mastercard">Masterard</option>
+                                <option value="Visa">Visa</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Parcelas</label>
+                                <select id="parcelas02" name="parcelas02" class="form-control form-control-alternative" readonly>
+                                <option>Selecione...</option>
+                                <option value="Débito">Débito</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Valor das Parcelas</label>
+                                <input type="text" id="valorParcelas02" name="valorParcelas02" class="form-control form-control-alternative" value="0" readonly onkeypress="$(this).mask('R$ 999.990,00')">
+                              </div>
+                            </div>
+
+                            <div class="col-lg-2">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor Total</label>
+                                <input type="text" id="valorTotal02" name="valorTotal02" class="form-control form-control-alternative" readonly>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Código Autorização</label>
+                                <input type="number" id="codigoAutorizacao02" name="codigoAutorizacao02" class="form-control form-control-alternative">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                          <div class="col-lg-4">
+                              
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor Total da Transação</label>
+                                <input type="text" id="valorTotalTransacao" name="valorTotalTransacao" class="form-control form-control-alternative" value="0" readonly onkeypress="$(this).mask('R$ 999.990,00')">
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor Total dos Boletos</label>
+                                <input type="text" id="valorTotaBoletos" name="valorTotaBoletos" class="form-control form-control-alternative" value="0" readonly onkeypress="$(this).mask('R$ 999.990,00')">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <hr class="my-4" />
+                        <div class="text-right">
+                          <!-- <button class="btn btn-primary my-4 nextBtn" id="imprimir" type="button">Imprimir</button> -->
+                          <input type="hidden" name="nomeOperacao" id="nomeOperacao" value="<%= usuario.operacao %>"> <!-- nome da Operação -->
+                          <button type="sumit" class="btn btn-primary my-4">Enviar Lançamento</button></a>
+                        </div>
+                      </form>
+
+                    </div> <!-- Card-body -->
+                </div> <!-- Card shadow -->
+            </div> <!-- Col -->
+        </div> <!-- row -->
+   <!-- </div>  Container fluid -->
+
+
+   <%- include('partials/footer.ejs') %>
+  <script src="../js/lancamento.js"></script>

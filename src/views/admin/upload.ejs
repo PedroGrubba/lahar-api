@@ -1,0 +1,44 @@
+<%- include('partials/header.ejs') %>
+
+    <div class="header bg-gradient-primary pb-7 pt-4 pt-md-7">
+      <div class="container-fluid">
+        <div class="header-body">
+          
+        </div>
+      </div>
+    </div> <!-- header bg-gradient-primary -->
+
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+            <div class="col">
+                <div class="card shadow">
+
+                    <div class="card-header bg-transparent">
+                        <h3 class="mb-0">Cadastro da Operação</h3>
+                    </div>
+
+                    <div class="card-body">
+
+                      <form action="/lancamento/send" method="post" enctype="multipart/form-data">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" required name="file_upload">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <button style="display: block; margin: 0 auto" class="btn waves-effect waves-light"
+                            type="submit">UPLOAD</button>
+                    </form>
+
+                    </div> <!-- Card-body -->
+                </div> <!-- Card shadow -->
+            </div> <!-- Col -->
+        </div> <!-- row -->
+   <!-- </div>  Container fluid -->
+
+
+<%- include('partials/footer.ejs') %>

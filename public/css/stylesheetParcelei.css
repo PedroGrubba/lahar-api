@@ -1,0 +1,34 @@
+
+@media (min-width: 768px){
+    
+    .navbar-vertical.navbar-expand-md .navbar-brand-img {
+        max-height: 4.5rem !important;
+    }
+
+}
+
+.navbar-horizontal .navbar-brand img {
+    height: 60px !important;
+}
+
+.text-light {
+    color: #f0f0f0 !important;
+}
+
+/* 
+@media print {
+    html, body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    #printable {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 14px;
+    }
+    #printable ~ * {
+        display: none;
+    }
+} */

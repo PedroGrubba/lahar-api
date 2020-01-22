@@ -1,0 +1,12 @@
+
+.bg-gradient-primary {
+    background: linear-gradient(87deg, #ffffff 0, #e6e6e6 100%) !important;
+}
+
+.bg-default {
+    background-color: #005ca9 !important;
+}
+
+.fill-default {
+    fill: #005ca9 !important;
+}

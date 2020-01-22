@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <title>
+    Parcelei - Comprovante.
+  
+    </title>
+    <link href="../img/brand/favicon.png" rel="icon" type="image/png">
+    <link href="../js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <style>
+        @media print {
+            body {
+                margin:0;
+                padding:0;
+                line-height: 1.4em;
+            }
+
+            .no-print {
+                display:none !important; 
+            }
+        }
+    </style>
+    </head>
+    
+    <body Style="font-size: 14px;">
+    <div class="col-md-10 offset-md-1">
+    <br>
+    
+        <div class="no-print">
+            <div class="alert alert-success no-print" role="alert">
+                Transação realizada com sucesso!
+            </div>
+            <center>
+                <button value="Imprimir" type="button" class="btn btn-info no-print button" onclick="window.print();" style="background-color: #005baa;">Imprimir</button>
+                <a href="/admin/listOperacoes" class="btn btn-success no-print button">Finalizar</a>
+            </center>
+        </div>
+
+    <br><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="../../img/brand/blue.png" class="navbar-brand-img" alt="..." width="180px">
+            </div>
+            <div class="col-sm-4" align="center">
+                <br>
+                <h5>Comprovante de Transação</h5>
+            </div>
+            <div class="col-sm-4" align="center">
+                <br>
+                <p><b><% if(typeof params.noPedido != 'undefined') { %> <%= params.noPedido %> <% } %> </b></p>
+            </div>
+        </div>
+
+        <br><br><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <h5>DADOS DO PORTADOR</h5>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <p><b>Nome: </b><%= params.nome %> </p>
+                <p><b>E-mail:</b> <%= params.email %></p>
+                <br><br>
+            </div>
+
+            <div class="col-sm-6">
+                <p><b>CPF:</b> <%= params.cpf %>
+                <p><b>Celular: </b> <%= params.celular %> <br>
+            </div>
+         </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h5>DADOS DO PEDIDO</h5>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <p><b>Data: </b><%= params.dataHoje %> </p>
+                <p><b>Código de Barras:</b></p>
+                <P> <% if( params.codigoBarras01 != null ) { %> <p> <%= params.codigoBarras01 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras02 != null ) { %> <p> <%= params.codigoBarras02 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras03 != null ) { %> <p> <%= params.codigoBarras03 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras04 != null ) { %> <p> <%= params.codigoBarras04 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras05 != null ) { %> <p> <%= params.codigoBarras05 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras06 != null ) { %> <p> <%= params.codigoBarras06 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras07 != null ) { %> <p> <%= params.codigoBarras07 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras08 != null ) { %> <p> <%= params.codigoBarras08 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras09 != null ) { %> <p> <%= params.codigoBarras09 %> </p> <% } %> 
+                <P> <% if( params.codigoBarras10 != null ) { %> <p> <%= params.codigoBarras10 %> </p> <% } %> 
+                <p align="right"><b>Total</b></p>
+            </div>
+
+            <div class="col-sm-5">
+                <BR>
+                <p Style="margin-top: 15px !important;"><b>Valor: </b></p>
+                <P> <% if( params.valor01 != null ) { %> <p>R$ <%= params.valor01 %> </p> <% } %> 
+                <P> <% if( params.valor02 != 0 ) { %> <p>R$ <%= params.valor02 %> </p> <% } %> 
+                <P> <% if( params.valor03 != 0 ) { %> <p>R$ <%= params.valor03 %> </p> <% } %> 
+                <P> <% if( params.valor04 != 0 ) { %> <p>R$ <%= params.valor04 %> </p> <% } %>
+                <P> <% if( params.valor05 != 0 ) { %> <p>R$ <%= params.valor05 %> </p> <% } %>
+                <P> <% if( params.valor06 != 0 ) { %> <p>R$ <%= params.valor06 %> </p> <% } %>
+                <P> <% if( params.valor07 != 0 ) { %> <p>R$ <%= params.valor07 %> </p> <% } %>
+                <P> <% if( params.valor08 != 0 ) { %> <p>R$ <%= params.valor08 %> </p> <% } %>
+                <P> <% if( params.valor09 != 0 ) { %> <p>R$ <%= params.valor09 %> </p> <% } %>
+                <P> <% if( params.valor10 != 0 ) { %> <p>R$ <%= params.valor10 %> </p> <% } %>
+                <p>R$ <%= params.valorTotaBoletos %></p>
+            </div>
+         </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h5>DADOS DO PAGAMENTO</h5>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <p><b>Cartão</b></p>
+                <P>  <%= params.bandeira01 %> </p>
+                <P> <% if( params.valorParcelas02 > 0 ) { %> <p> <%= params.bandeira02 %> </p> <% } %>
+            </div>
+            <div class="col-sm-3">
+                <p><b>No. Parcelas</b></p>
+                <P>  <%= params.parcelas01 %> </p>
+                <P> <% if( params.valorParcelas02 > 0 ) { %> <p> <%= params.parcelas02 %> </p> <% } %>
+            </div>
+            <div class="col-sm-3">
+                <p><b>Valor da Parcela</b></p>
+                <P>R$ <%= params.valorParcelas01 %> </p>
+                <P> <% if( params.valorParcelas02 > 0) { %> <p>R$ <%= params.valorParcelas02 %> </p> <% } %>
+                <p align="right"><b>Total da Transação</b></p>
+            </div>
+            <div class="col-sm-3">
+                <p><b>Total Parcelas</b></p>
+                <P>R$  <%= params.valorTotalParcelas01 %> </p>
+                <P> <% if( params.valorTotalParcelas02 > 0 ) { %> <p>R$ <%= params.valorTotalParcelas02 %> </p> <% } %>
+                <P>R$  <%= params.valorTotalTransacao %> </p>
+            </div>
+         </div>
+
+        <br><br>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <p align="justify">Declaro para os devidos fins que as informações acima fornecidas 
+                    por mim são verdadeiras e assumo total responsabilidade junto ao(s) CEDENTE(s) 
+                    pelos dados contidos no(s) boleto(s) aqui apresentado(s).</p>
+                <p align="justify">Estou ciente, também, que o(s) boleto(s) aqui apresentado(s) 
+                    e com dados acima descritos, será(ão) liquidado(s) em até 24 horas úteis.</p>
+                <p align="justify">Em caso de estorno da operação, o valor poderá ser 
+                    restituído no cartão em até 48 horas úteis.</p>
+                <p align="justify">Anexo, também, uma cópia do meu RG ou CNH de livre e 
+                    espontânea vontade. </p>
+                <p align="justify">Dúvidas ou reclamações, por favor, acionar <b>(081) 98254-5376.</b></p>
+                <p align="justify"></p>
+                <p align="justify"><b>Nome:</b></p>
+                <p align="justify"><b>Assinatura:_____________________________________________________________________</b></p>
+                <p align="justify"><b>Assinatura do Vendedor:_______________________________________________________</b></p>
+                <br><br>
+                <p align="center">Recife (PE), ________de_______________________de___________.</p>
+            </div>
+        </div>
+
+        <br><br>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  </body>
+</html>

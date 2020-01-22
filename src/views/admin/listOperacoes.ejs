@@ -1,0 +1,59 @@
+<%- include('partials/header.ejs') %>
+
+    <div class="header bg-gradient-primary pb-7 pt-4 pt-md-7">
+      <div class="container-fluid">
+        <div class="header-body">
+          
+        </div>
+      </div>
+    </div> <!-- Header (Parte azul da Página) -->
+
+    <!-- Page content -->
+    <div class="container-fluid mt--7"> <!-- Fecha no footer -->
+        <!-- form 01 -->
+        <div class="row">
+            <div class="col-xl-12 mb-12 mb-xl-0">
+                <div class="card shadow">
+                  <div class="card-header border-0">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h3 class="mb-0">Lançamentos de Vendas</h3>
+                      </div>
+                      <div class="col text-right">
+                        <a href="./operacao" class="btn btn-sm btn-primary">Cadastrar nova Venda</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">CPF</th>
+                          <th scope="col">Cliente</th>
+                          <th scope="col">Data</th>
+                          <th scope="col">Valor total da Transação</th>
+                          <th scope="col">Anexo dos Documentos</th>
+                          <th scope="col"> # </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% lancamentos.forEach(lan => { %>
+                          <tr>
+                            <td> <%= lan.cpf %> </td>
+                            <td> <%= lan.nome %> </td>
+                            <td> <%= lan.dataHoje %> </td>
+                            <td> R$ <%= lan.valorTotalTransacao %> </td>
+                            <% if( lan.linkDrive == 'NaN' ) { %> <td> <button type="button" class="btn btn-danger btn-sm" data-container="body" data-toggle="popover" data-color="danger" data-placement="top" data-content="Aguardando link de anexo dos documentos">Aguardando Link de Anexo</button> </td> <% } %>
+                            <% if( lan.linkDrive != 'NaN' ) { %><td> <button type="button" class="btn btn-success btn-sm" data-container="body" data-toggle="popover" data-color="success" data-placement="top" data-content="Link de anexo ok!">Link de Anexo Ok!</button> </td> <% } %>
+                            <td> <a href="./<%= lan._id %> " type="button" class="btn btn-link btn-sm">Anexar Link</a> </td>
+                          </tr>
+                        <% }) %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+        </div> <!-- row -->
+    
+<%- include('partials/footer.ejs') %>
