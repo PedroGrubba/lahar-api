@@ -8,6 +8,17 @@ module.exports = {
     async getLeadsLahar(req, res){
         console.log('Dados do Lahar: ' + req.body);
         const Lead = req.body;
+
+        if(Lead !== undefined || Lead !== null){
+            if(typeof Lead.nome !== undefined || Lead.nome !== null){
+                console.log('Nome: ' + Lead.nome);
+            }
+
+            if(typeof Lead.sobrenome !== undefined || Lead.sobrenome !== null){
+                console.log('Sobrenome: ' + Lead.sobrenome);
+            }
+        }
+
         res.send({
             retorno: 'Sucesso!',
             data: Lead
