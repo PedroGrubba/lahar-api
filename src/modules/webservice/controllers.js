@@ -5,6 +5,15 @@ const { loginValidation } = require('../auth/models/validation');
 
 module.exports = {
 
+    async getLeadsLahar(req, res){
+        console.log('Dados do Lahar: ' + req.body);
+        const Lead = req.body;
+        res.send({
+            retorno: 'Sucesso!',
+            data: Lead
+        });
+    }, 
+
     async helloWord(req, res){
         res.send('Hello word!');
     },
