@@ -1,0 +1,131 @@
+<%- include('partials/header.ejs') %>
+
+    <div class="header bg-gradient-primary pb-7 pt-4 pt-md-7">
+      <div class="container-fluid">
+        <div class="header-body">
+          
+        </div>
+      </div>
+    </div> <!-- header bg-gradient-primary -->
+
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+            <div class="col">
+                <div class="card shadow">
+
+                    <div class="card-header bg-transparent">
+                        <h3 class="mb-0">Simulação</h3>
+                    </div>
+
+                    <div class="card-body">
+
+                      <form id="formSimulacao" name="formSimulacao" action="/simulacao/send" method="POST" role="form">
+
+                        <h6 class="heading-small text-muted mb-4">Informações do Cliente</h6>
+                        <div class="pl-lg-4">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Nome</label>
+                                <input type="text" id="nome" name="nome" class="form-control form-control-alternative" required>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control form-control-alternative" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">    
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-last-name">Celular</label>
+                                <input type="text" id="celular" name="celular" class="form-control form-control-alternative" placeholder="(XX) 9XXXX - XXXX" onkeypress="$(this).mask('(00) 90000-0000')" required>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Onde nos Conheceu?</label>
+                                <select id="ondeConheceu" name="ondeConheceu" class="form-control form-control-alternative" required>
+                                <option>Selecione...</option>
+                                <option value="Cliente Recorrente">Cliente Recorrente</option>
+                                <option value="Detran">Detran</option>
+                                <option value="Google">Google</option>
+                                <option value="Ônibus">Ônibus</option>
+                                <option value="Outdoor">Outdoor</option>
+                                <option value="Panfleto">Panfleto</option>
+                                <option value="Rede Social">Rede Social</option>
+                                <option value="Outros">Outros</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <hr class="my-4" />
+                        <!-- Serviço -->
+                        <h6 class="heading-small text-muted mb-4">Serviço</h6>
+                        <div class="pl-lg-4">
+                          <div class="row">
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor Total dos Boletos</label>
+                                <input type="currency" id="valorTotaBoletosSimulacao" name="valorTotaBoletosSimulacao" class="form-control form-control-alternative" onkeyup="formataValorReal(this);">
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city">Parcelas</label>
+                                <select id="parcelasSimulacao" name="parcelasSimulacao" class="form-control form-control-alternative" required>
+                                <option>Selecione...</option>
+                                <option value="Débito">Débito</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">Valor das Parcelas</label>
+                                <input type="text" id="valorParcelasSimulacao" name="valorParcelasSimulacao" class="form-control form-control-alternative" value="0" readonly onkeypress="$(this).mask('R$ 999.990,00')">
+                                <input type="hidden" name="emailUsuarioParcelei" id="emailUsuarioParcelei" value="<%= usuario.email %>">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <hr class="my-4" />
+                        <div class="text-right">
+                          <input type="hidden" name="nomeOperacao" id="nomeOperacao" value="<%= usuario.operacao %>"> <!-- nome da Operação -->
+                          <button class="btn btn-primary my-4" id="fazerSimulacao" type="button">Fazer Simulação</button>
+                          <button type="submit" class="btn btn-primary my-4" id="realizarOperacao" disabled>Realizar Operacão</button></a>
+                        </div>
+                      </form>
+
+                    </div> <!-- Card-body -->
+                </div> <!-- Card shadow -->
+            </div> <!-- Col -->
+        </div> <!-- row -->
+   <!-- </div>  Container fluid -->
+
+<script src="../js/simulacao.js"></script>
+<%- include('partials/footer.ejs') %>

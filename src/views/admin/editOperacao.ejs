@@ -1,0 +1,380 @@
+<%- include('partials/header.ejs') %>
+
+    <div class="header bg-gradient-primary pb-7 pt-4 pt-md-7">
+      <div class="container-fluid">
+        <div class="header-body">
+          
+        </div>
+      </div>
+    </div> <!-- header bg-gradient-primary -->
+
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+            <div class="col">
+                
+                <div class="card shadow">
+
+                    <div class="card-header bg-transparent">
+                        <h3 class="mb-0">Anexar Arquivo</h3>
+                        <div class="col text-right">
+                            <a href="./comprovante/<%= lancamento._id %>" class="btn btn-sm btn-primary">Gerar Comprovante</a>
+                          </div>
+                    </div>
+
+                    <div class="card-body">
+
+                      <form action="/lancamento/update" method="POST" role="form">
+                        <h6 class="heading-small text-muted mb-4">Informações do Cliente</h6>
+                        <div class="pl-lg-4">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-username">CPF : </label>
+                                <label class="form-control-label"> <%= lancamento.cpf %>  </label>
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-first-name">Nome : </label>
+                                <label class="form-control-label"> <%= lancamento.nome %> </label>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-email">Email : </label>
+                                <label class="form-control-label"><%= lancamento.email %> </label>
+                              </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-last-name">Celular : </label>
+                                <label class="form-control-label"> <%= lancamento.celular %> </label>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <!-- Lançamentos -->
+                        <hr class="my-4" />
+                        <h6 class="heading-small text-muted mb-4">Lançamentos</h6>
+
+                        <% if( lancamento.codigoBarras01 != null ) { %>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.codigoBarras01 %> </label>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label"> R$ <%= lancamento.valorParcelas01 %> </label>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label"> <%= lancamento.tipo01 %> </label>
+                              </div>
+                            </div>
+                          </div>
+                        <% } %> 
+
+                        <% if( lancamento.codigoBarras02.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras02 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas02 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo02 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <% if( lancamento.codigoBarras03.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras03 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas03 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo03 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <% if( lancamento.codigoBarras04.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras04 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas04 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo04 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <% if( lancamento.codigoBarras05.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras05 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas05 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo05 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <% if( lancamento.codigoBarras06.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras06 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas06 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo06 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <% if( lancamento.codigoBarras07.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras07 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas07 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo07 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <% if( lancamento.codigoBarras08.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras08 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas08 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo08 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <% if( lancamento.codigoBarras09.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras09 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas09 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo09 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <% if( lancamento.codigoBarras10.length > 0 ) { %>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label"> <%= lancamento.codigoBarras10 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                  <label class="form-control-label"> R$ <%= lancamento.valorParcelas10 %> </label>
+                                </div>
+                              </div>
+                              <div class="col-lg-3">
+                                <div class="form-group">
+                                <label class="form-control-label"> <%= lancamento.tipo10 %> </label>
+                                </div>
+                              </div>
+                            </div>
+                          <% } %> 
+
+                          <div class="row">
+                              <div class="col-lg-10" align=right>
+                                <div class="form-group">
+                                  <label class="form-control-label" for="input-country">Valor Total dos Boletos : </label>
+                                  <label class="form-control-label" for="input-country">R$ <%= lancamento.valorTotaBoletos %></label>
+                                </div>
+                              </div>
+                            </div>
+                        
+                    
+                        <hr class="my-4" />
+                        <!-- Serviço -->
+                        <div class="pl-lg-4">
+                          <div class="row">
+                            <span class="heading-small text-muted mb-4">Cartão 01</span>
+                            
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city"><%= lancamento.bandeira01 %></label>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city"><%= lancamento.parcelas01 %></label>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">R$ <%= lancamento.valorParcelas01 %></label>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">R$ <%= lancamento.valorTotalParcelas01 %></label>
+                              </div>
+                            </div>
+                          </div>
+
+                        <% if( lancamento.valorParcelas02 > 0 ) { %>
+                          <div class="row">
+                            <span class="heading-small text-muted mb-4">Cartão 02</span>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city"><%= lancamento.bandeira02 %></label>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                              <label class="form-control-label" for="input-city"><%= lancamento.parcelas02 %></label>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-city">R$ <%= lancamento.valorParcelas02 %></label>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">R$ <%= lancamento.valorTotalParcelas02 %></label>
+                              </div>
+                            </div>
+                            </div>
+                        <% } %>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-10" align=right>
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Valor Total da Transação: </label>
+                                <label class="form-control-label" for="input-country">R$  <%= lancamento.valorTotalTransacao %></label>
+                              </div>
+                            </div>
+                          </div>
+
+                        <hr class="my-4" />
+                        <h6 class="heading-small text-muted mb-4">Anexo do arquivo</h6>
+                        <div class="pl-lg-4">
+                          <div class="row">
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-group">
+                                <label class="form-control-label" for="input-country">Link do Google Drive </label>
+                                <input type="text" id="linkDrive" name="linkDrive" class="form-control form-control-alternative" required>
+                                <input type="hidden" name="idSalesforce" value="<%= lancamento.idSalesforce %>">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <hr class="my-4" />
+                        <div class="text-right">
+                          <!-- <button class="btn btn-primary my-4 nextBtn" id="imprimir" type="button">Imprimir</button> -->
+                          <button type="sumit" class="btn btn-primary my-4">Salvar Alteração</button></a>
+                        </div>
+                      </form>
+
+                    </div> <!-- Card-body -->
+                </div> <!-- Card shadow -->
+            </div> <!-- Col -->
+        </div> <!-- row -->
+   <!-- </div>  Container fluid -->
+
+
+   <%- include('partials/footer.ejs') %>
