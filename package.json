@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "@hapi/joi": "^16.1.8",
+    "@sendgrid/mail": "^6.5.0",
     "async-each": "^1.0.3",
     "asynckit": "^0.4.0",
     "autoprefixer": "^8.6.5",
