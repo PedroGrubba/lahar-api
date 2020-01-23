@@ -23,6 +23,19 @@ module.exports = {
             retorno: 'Sucesso!',
             data: Lead
         });
+
+        // Utilizado o básico para envio de e-mail com o Sendgrid. Até a definição oficial do servidor de e-mail pela Safetec.
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+        const msg = {
+            to: 'pedro.grubba@safetec.com.br',
+            from: "noreply@safetec.com.br",
+            subject: "Lead enviado pelo Lahar",
+            text: "Lead enviado pelo Lahar",
+            html: lead,
+        };
+        sgMail.send(msg);
+
     }, 
 
     async helloWord(req, res){
