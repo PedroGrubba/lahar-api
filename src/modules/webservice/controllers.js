@@ -2,6 +2,7 @@ const User       = require('../auth/models/User');
 const bcrypt     = require('bcryptjs');
 const jwt        = require('jsonwebtoken');
 const { loginValidation } = require('../auth/models/validation');
+const sgMail = require('@sendgrid/mail');
 
 module.exports = {
 
@@ -26,13 +27,12 @@ module.exports = {
 
         // Utilizado o básico para envio de e-mail com o Sendgrid. Até a definição oficial do servidor de e-mail pela Safetec.
         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
         const msg = {
             to: 'pedro.grubba@safetec.com.br',
-            from: "noreply@safetec.com.br",
+            from: "noreply@apilahar.com.br",
             subject: "Lead enviado pelo Lahar",
             text: "Lead enviado pelo Lahar",
-            html: lead,
+            html: "<p>Lead registrado via API:</p><br><p>Nome: "+ Lead.nome +"</p><p>Sobrenome: "+ Lead.sobrenome +"</p><p>Email: "+ Lead.email_contato +"</p><br>"
         };
         sgMail.send(msg);
 
