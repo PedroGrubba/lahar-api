@@ -2,7 +2,7 @@ const User       = require('../auth/models/User');
 const bcrypt     = require('bcryptjs');
 const jwt        = require('jsonwebtoken');
 const { loginValidation } = require('../auth/models/validation');
-const sgMail = require('@sendgrid/mail');
+const Salesforce = require('../salesforce/api');
 
 module.exports = {
 
@@ -11,31 +11,41 @@ module.exports = {
         const Lead = req.body;
 
         if(Lead !== undefined || Lead !== null){
+            console.log(" ---------------------------------------------------- ");
             if(typeof Lead.nome !== undefined || Lead.nome !== null){
                 console.log('Nome: ' + Lead.nome);
             }
 
             if(typeof Lead.sobrenome !== undefined || Lead.sobrenome !== null){
-                console.log('Sobrenome: ' + Lead.sobrenome);
+                console.log('Nome Empresa: ' + Lead.nome_empresa);
             }
+            console.log(" ---------------------------------------------------- ");
         }
 
-        res.send({
-            retorno: 'Sucesso!',
-            data: Lead
-        });
-
-        // Utilizado o básico para envio de e-mail com o Sendgrid. Até a definição oficial do servidor de e-mail pela Safetec.
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-        const msg = {
-            to: 'pedro.grubba@safetec.com.br',
-            from: "noreply@apilahar.com.br",
-            subject: "Lead enviado pelo Lahar",
-            text: "Lead enviado pelo Lahar",
-            html: "<p>Lead registrado via API:</p><br><p>Nome: "+ Lead.nome +"</p><p>Sobrenome: "+ Lead.sobrenome +"</p><p>Email: "+ Lead.email_contato +"</p><br>"
+        const jsonSalesforce = {
+            FirstName:      Lead.nome,
+            LastName:       Lead.sobrenome,
+            MobilePhone:    Lead.tel_celular,
+            Email:          Lead.email,
+            Industry:       Lead.setor,
+            Title:          Lead.cargo,
+            Company:        Lead.nome_empresa,
+            State:          Lead.estado
         };
-        sgMail.send(msg);
 
+        Salesforce.registerLead( jsonSalesforce )
+            .then( results => {
+                res.send({
+                    success: true,
+                    message: results
+                });
+            })
+            .catch( err => {
+                res.send({
+                    success: false,
+                    message: err.message
+                });
+            });        
     }, 
 
     async helloWord(req, res){
