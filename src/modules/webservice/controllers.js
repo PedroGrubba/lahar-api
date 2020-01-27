@@ -22,10 +22,14 @@ module.exports = {
             console.log(" ---------------------------------------------------- ");
         }
 
+        // caso o Lead não tenha sobrenome, transfere o nome para o campo devido a obrigatoriedade do 
+        // Ssalesforce
         if(Lead.sobrenome === null){
             Lead.sobrenome = Lead.nome;
+            Lead.nome = '';
         }
 
+        // informa empresa padrão caso o Lead não tenha
         if(Lead.nome_empresa === null){
             Lead.nome_empresa = 'Lahar Corp';
         }
