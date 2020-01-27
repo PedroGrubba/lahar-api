@@ -22,6 +22,14 @@ module.exports = {
             console.log(" ---------------------------------------------------- ");
         }
 
+        if(Lead.sobrenome === null){
+            Lead.sobrenome = Lead.nome;
+        }
+
+        if(Lead.nome_empresa === null){
+            Lead.nome_empresa = 'Lahar Corp';
+        }
+
         const jsonSalesforce = {
             FirstName:      Lead.nome,
             LastName:       Lead.sobrenome,
