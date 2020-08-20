@@ -15,7 +15,7 @@
     "babel-plugin-dynamic-import-node": "^2.3.0",
     "balanced-match": "^1.0.0",
     "base": "^0.11.2",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "bcrypt-pbkdf": "^1.0.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
