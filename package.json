@@ -68,7 +68,7 @@
     "mongoose": "^5.8.0",
     "mongoose-double": "^0.0.1",
     "mongoose-legacy-pluralize": "^1.0.2",
-    "mpath": "^0.6.0",
+    "mpath": "^0.8.4",
     "node-releases": "^1.1.41",
     "nodemon": "^2.0.1",
     "nopt": "^4.0.1",
